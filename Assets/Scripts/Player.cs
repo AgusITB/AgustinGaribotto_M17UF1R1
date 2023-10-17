@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 8f;
     public float gravity = -9;
     public LayerMask whatIsGround;
+    public float waitOnDeath;
 
     // Components
     [SerializeField] private LayerMask groundLayer;
@@ -20,12 +21,15 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded = true;
     private float horizontal;
     private bool isFacingRight = true;
+    bool isDying = false;
 
     // Public members
     [HideInInspector]
     public bool facingRight = true;
     [HideInInspector]
     public bool facingUp = true;
+
+    public Vector2 spawnPoint = new Vector2(0.0f, 0.0f);
 
 
    void Start()
@@ -46,22 +50,60 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        isGrounded = CheckIsGrounded();
-
-        // De -1.0 a 1.0 al pulsar A o D
-        horizontal = Input.GetAxisRaw("Horizontal");
-
-        // Aplicamos la velocidad en X y la gravedad en Y
-        rb.velocity = new Vector2(horizontal * speed, isGrounded ? 0.0f : gravity);
-
-        playerAnimator.SetBool("isWalking", false);
-
-        if (horizontal > 0.0f || horizontal < 0.0f)
+        if (!isDying)
         {
-            playerAnimator.SetBool("isWalking", true);
+            isGrounded = CheckIsGrounded();
+
+            // De -1.0 a 1.0 al pulsar A o D
+            horizontal = Input.GetAxisRaw("Horizontal");
+
+            // Aplicamos la velocidad en X y la gravedad en Y
+            rb.velocity = new Vector2(horizontal * speed, isGrounded ? 0.0f : gravity);
+
+            playerAnimator.SetBool("isWalking", false);
+
+            if (horizontal > 0.0f || horizontal < 0.0f)
+            {
+                playerAnimator.SetBool("isWalking", true);
+            }
         }
 
     }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Danger"))
+        {
+            StartCoroutine(ManageDeath());
+        }
+    }
+    IEnumerator ManageDeath()
+    {
+
+        isDying = true;
+        playerAnimator.SetBool("isDying", true);
+
+        rb.Sleep();
+
+        yield return new WaitForSeconds(waitOnDeath);
+
+        playerAnimator.SetBool("isDying", false);
+
+        if (gravity > 0.0f)
+        {
+            FlipVertically();
+            gravity *= -1;
+        }
+
+        transform.position = spawnPoint;
+
+        rb.WakeUp();
+
+        isDying = false;
+    }
+
+    
 
     private void Flip()
     {
