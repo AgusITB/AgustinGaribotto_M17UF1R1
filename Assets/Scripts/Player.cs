@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector]
     public bool facingUp = true;
 
-    public Vector2 spawnPoint = new Vector2(0.0f, 0.0f);
+    public Vector2 spawnPoint = new(0.0f, 0.0f);
 
 
    void Start()
@@ -77,18 +77,20 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(ManageDeath());
         }
+
     }
     IEnumerator ManageDeath()
     {
 
         isDying = true;
         playerAnimator.SetBool("isDying", true);
-
+    
         rb.Sleep();
 
         yield return new WaitForSeconds(waitOnDeath);
 
         playerAnimator.SetBool("isDying", false);
+
 
         if (gravity > 0.0f)
         {
@@ -97,10 +99,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
         transform.position = spawnPoint;
-
         rb.WakeUp();
-
+        
         isDying = false;
+  
     }
 
     

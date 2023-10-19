@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 89c2ab31b1c76be4391542f90b7f330e
+guid: 119d839096d592042a443a34c8420afd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,7 +110,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: player run 48x48_0
+      name: run cycle 48x48_0
       rect:
         serializedVersion: 2
         x: 0
@@ -124,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0c694e670d1ca2741810be115ae07094
-      internalID: 1236547128
+      spriteID: 42a5ba7915ab9d2448f8b8b91e9c5967
+      internalID: -871359904
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player run 48x48_1
+      name: run cycle 48x48_1
       rect:
         serializedVersion: 2
         x: 48
@@ -145,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b51bd9fa79f3c094e93ecd025296c0dc
-      internalID: 1502838747
+      spriteID: 170c0f8108a3d4540ad263b17ea0a6b9
+      internalID: -1468811518
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player run 48x48_2
+      name: run cycle 48x48_2
       rect:
         serializedVersion: 2
         x: 96
@@ -166,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ae24c220ad3e3e84ebf82d0b2f188e78
-      internalID: -1937709604
+      spriteID: e49a6ad96ff17cd4a8add58bc3c60150
+      internalID: -1309300162
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player run 48x48_3
+      name: run cycle 48x48_3
       rect:
         serializedVersion: 2
         x: 144
@@ -187,14 +187,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38ea95b9efab1ca4991220e9b262e464
-      internalID: -892418233
+      spriteID: fb2e5c4e68c775348bfe6f20edbf4c1e
+      internalID: 326660395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player run 48x48_4
+      name: run cycle 48x48_4
       rect:
         serializedVersion: 2
         x: 192
@@ -208,14 +208,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 298f4364ced1c284a9f7bd88168893fe
-      internalID: -280233179
+      spriteID: b40cedc00cf2b2746a9329f375ee5e55
+      internalID: -1987562506
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player run 48x48_5
+      name: run cycle 48x48_5
       rect:
         serializedVersion: 2
         x: 240
@@ -229,14 +229,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7241075d8944dc4190a7d493740d6ca
-      internalID: 663268191
+      spriteID: 47745ad2683fdf24caa26e42d4018216
+      internalID: 1506002707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player run 48x48_6
+      name: run cycle 48x48_6
       rect:
         serializedVersion: 2
         x: 288
@@ -250,14 +250,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9603878a9899b634bb44752242034737
-      internalID: 255924367
+      spriteID: 8ab0489ff2d2346448d6ab90225e5ba4
+      internalID: 1058414801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: player run 48x48_7
+      name: run cycle 48x48_7
       rect:
         serializedVersion: 2
         x: 336
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd267d6a28a4de643855c29a78cffe40
-      internalID: -1913593269
+      spriteID: a8961595434b994488170a02e9693b33
+      internalID: -603494368
       vertices: []
       indices: 
       edges: []
@@ -288,14 +288,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      player run 48x48_0: 1236547128
-      player run 48x48_1: 1502838747
-      player run 48x48_2: -1937709604
-      player run 48x48_3: -892418233
-      player run 48x48_4: -280233179
-      player run 48x48_5: 663268191
-      player run 48x48_6: 255924367
-      player run 48x48_7: -1913593269
+      run cycle 48x48_0: -871359904
+      run cycle 48x48_1: -1468811518
+      run cycle 48x48_2: -1309300162
+      run cycle 48x48_3: 326660395
+      run cycle 48x48_4: -1987562506
+      run cycle 48x48_5: 1506002707
+      run cycle 48x48_6: 1058414801
+      run cycle 48x48_7: -603494368
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
