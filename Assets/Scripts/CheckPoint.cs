@@ -38,7 +38,7 @@ public class Checkpoint : MonoBehaviour
 
     public void Deactivated()
     {
-        if (!enabled)
+        if (enabled)
         {
             enabled = false;
             spriteRenderer.color = color;

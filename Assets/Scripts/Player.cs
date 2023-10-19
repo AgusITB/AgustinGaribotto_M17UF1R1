@@ -10,6 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = -9;
     public LayerMask whatIsGround;
     public float waitOnDeath;
+ 
+
 
     // Components
     [SerializeField] private LayerMask groundLayer;
@@ -23,6 +25,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isFacingRight = true;
     bool isDying = false;
 
+    //private GameObject gC;
+    private GameController gameController;
+
     // Public members
     [HideInInspector]
     public bool facingRight = true;
@@ -34,6 +39,10 @@ public class PlayerMovement : MonoBehaviour
 
    void Start()
     {
+        //gC = GameObject.Find("GameController");
+        //gameController = gC.GetComponent<GameController>();
+
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
         playerAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         mCollider = GetComponent<BoxCollider2D>();
@@ -81,7 +90,6 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator ManageDeath()
     {
-
         isDying = true;
         playerAnimator.SetBool("isDying", true);
     
@@ -98,14 +106,30 @@ public class PlayerMovement : MonoBehaviour
             gravity *= -1;
         }
 
-        transform.position = spawnPoint;
+        transform.position = gameController.enabledCheckpoint.transform.position;
+
+
         rb.WakeUp();
+
         
         isDying = false;
   
     }
 
-    
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Respawn"))
+        {
+            Checkpoint checkpoint = collision.gameObject.GetComponent<Checkpoint>();
+
+            // Comprobamos si el checkpoint está desactivado.
+            if (!checkpoint.enabled)
+            {
+                Debug.Log(gameController);
+                gameController.ActivateCheckpoint(collision.gameObject);
+            }
+        }
+    }
 
     private void Flip()
     {
@@ -137,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Al pulsar la W, solo si el personaje está grounded
 
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.W) && isGrounded && !isDying)
         {
             // invertimos la gravedad y el sprite del personaje
 
