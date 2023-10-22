@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
 
 
     // Components
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Rigidbody2D rb;
     private BoxCollider2D mCollider;
     private Animator playerAnimator;
@@ -30,18 +29,12 @@ public class PlayerMovement : MonoBehaviour
 
     // Public members
     [HideInInspector]
-    public bool facingRight = true;
-    [HideInInspector]
     public bool facingUp = true;
-
     public Vector2 spawnPoint = new(0.0f, 0.0f);
 
 
    void Start()
     {
-        //gC = GameObject.Find("GameController");
-        //gameController = gC.GetComponent<GameController>();
-
         gameController = GameObject.Find("GameController").GetComponent<GameController>();
         playerAnimator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -92,13 +85,14 @@ public class PlayerMovement : MonoBehaviour
     {
         isDying = true;
         playerAnimator.SetBool("isDying", true);
-    
-        rb.Sleep();
 
+        Debug.Log(playerAnimator.GetBool("isDying"));
+        rb.Sleep();
+       
         yield return new WaitForSeconds(waitOnDeath);
 
         playerAnimator.SetBool("isDying", false);
-
+        Debug.Log(playerAnimator.GetBool("isDying"));
 
         if (gravity > 0.0f)
         {
