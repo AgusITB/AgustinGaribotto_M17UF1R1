@@ -22,7 +22,6 @@ public class EnemyShooting : MonoBehaviour
     void Update()
     {
 
-        
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
         if(distance < 20)

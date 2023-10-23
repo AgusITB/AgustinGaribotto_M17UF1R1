@@ -7,7 +7,7 @@ public class BulletPool : MonoBehaviour
     public static BulletPool instance;
 
     private List<GameObject> pooledObjects = new List<GameObject>();
-    private int amountToPool = 10;
+    private int amountToPool = 3;
 
     [SerializeField] private GameObject bulletPrefab;
 

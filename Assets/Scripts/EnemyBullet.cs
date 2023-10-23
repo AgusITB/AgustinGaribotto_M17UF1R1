@@ -11,17 +11,21 @@ public class EnemyBullet : MonoBehaviour
     public float force;
 
     // Start is called before the first frame update
+    private void OnBecameVisible()
+    {
+        Vector3 direction = player.transform.position - transform.position;
+
+        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
+
+        float rotation = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, rotation);
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
 
-        Vector3 direction = player.transform.position - transform.position;
-
-        rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
-
-        //float rotation = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        //transform.rotation = Quaternion.Euler(0,0,rotation);
+       
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
