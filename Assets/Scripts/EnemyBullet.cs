@@ -11,6 +11,7 @@ public class EnemyBullet : MonoBehaviour
     public float force;
 
     // Start is called before the first frame update
+  
     private void OnBecameVisible()
     {
         Vector3 direction = player.transform.position - transform.position;
@@ -24,8 +25,6 @@ public class EnemyBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
-
-       
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
