@@ -106,14 +106,8 @@ public class Player : MonoBehaviour
             FlipVertically();
             gravity *= -1;
         }
-
-        Debug.Log(gameController.enabledCheckpoint);
-  
-        transform.position = gameController.enabledCheckpoint.transform.position;
-
-
         rb.WakeUp();
-
+        gameController.RespawnPlayer(this);
         
         isDying = false;
   

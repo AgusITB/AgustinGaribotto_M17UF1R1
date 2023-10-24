@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class SwapScenes : MonoBehaviour
 {
     public GameObject player;
-
+    int scenetoload;
     // Start is called before the first frame update
 
 
@@ -24,11 +24,20 @@ public class SwapScenes : MonoBehaviour
         {
             DontDestroyOnLoad(collision.gameObject);
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GameController"));
-            DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Respawn"));
-            int scene = Convert.ToInt32(player.scene.name.ToString()) + 1;
-            Debug.Log($"scene: {scene}");
-            SceneManager.LoadScene($"{scene}");
-            player.transform.position = new(-21, -10, 1);
+            DontDestroyOnLoad(GameObject.FindGameObjectWithTag("ChangeScene"));
+            DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Player"));
+            player.transform.position = new(player.transform.position.x+5, player.transform.position.y, player.transform.position.z);
+            
+            if (player.scene.name == "1")
+            {
+                scenetoload = 1;
+            }
+            else if(player.scene.name == "2")
+            {
+                scenetoload = 0;
+            }
+            SceneManager.LoadScene(1);
+
         }
 
 
