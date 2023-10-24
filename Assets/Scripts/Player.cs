@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class Player : MonoBehaviour
 {
+    //Singleton
+    public static Player player;
 
     // Public members
     public float speed = 8f;
@@ -11,8 +13,6 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask whatIsGround;
     public float waitOnDeath;
  
-
-
     // Components
     [SerializeField] private Rigidbody2D rb;
     private BoxCollider2D mCollider;
@@ -32,6 +32,12 @@ public class PlayerMovement : MonoBehaviour
     public bool facingUp = true;
     public Vector2 spawnPoint = new(0.0f, 0.0f);
 
+
+    void Awake()
+    {
+        if (Player.player == null) Player.player = this;
+        else Destroy(this.gameObject);
+    }
 
    void Start()
     {
@@ -77,6 +83,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Danger"))
         {
+            
             StartCoroutine(ManageDeath());
         }
 
@@ -100,6 +107,8 @@ public class PlayerMovement : MonoBehaviour
             gravity *= -1;
         }
 
+        Debug.Log(gameController.enabledCheckpoint);
+  
         transform.position = gameController.enabledCheckpoint.transform.position;
 
 

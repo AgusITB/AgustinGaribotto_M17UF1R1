@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,14 +19,16 @@ public class SwapScenes : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log(player.scene.name.ToString());
         if (collision.gameObject.CompareTag("Player"))
         {
             DontDestroyOnLoad(collision.gameObject);
-            DontDestroyOnLoad(GameObject.FindGameObjectWithTag("MainCamera"));
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GameController"));
-
-            SceneManager.LoadScene("Level2");
-
+            DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Respawn"));
+            int scene = Convert.ToInt32(player.scene.name.ToString()) + 1;
+            Debug.Log($"scene: {scene}");
+            SceneManager.LoadScene($"{scene}");
+            player.transform.position = new(-21, -10, 1);
         }
 
 

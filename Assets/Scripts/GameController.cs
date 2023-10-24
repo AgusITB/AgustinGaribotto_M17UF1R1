@@ -6,7 +6,7 @@ using UnityEngine.UI;
   class GameController : MonoBehaviour
 {
     public GameObject enabledCheckpoint;
-
+    public static GameController gC;
 
     public void ActivateCheckpoint(GameObject newCheckpoint)
     {
@@ -17,5 +17,10 @@ using UnityEngine.UI;
         }
         enabledCheckpoint = newCheckpoint;
         enabledCheckpoint.GetComponent<Checkpoint>().Enabled();
+    }
+    void Awake()
+    {
+        if (GameController.gC == null) GameController.gC = this;
+        else Destroy(this.gameObject);
     }
 }
