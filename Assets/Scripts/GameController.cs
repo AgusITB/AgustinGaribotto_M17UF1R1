@@ -6,22 +6,16 @@ using UnityEngine.UI;
 
 class GameController : MonoBehaviour
 {
-    public GameObject enabledCheckpoint;
+    private GameObject checkPoint;
     public static GameController gC;
-    public void ActivateCheckpoint(GameObject newCheckpoint)
-    {
 
-        if (enabledCheckpoint)
-        {
-            enabledCheckpoint.GetComponent<Checkpoint>().Deactivated();
-        }
-        enabledCheckpoint = newCheckpoint;
-        enabledCheckpoint.GetComponent<Checkpoint>().Enabled();
-    }
+   
 
     public void RespawnPlayer(Player player)
     {
-        player.transform.position = gC.enabledCheckpoint.transform.position;
+        checkPoint = GameObject.FindGameObjectWithTag("Respawn");
+        player.transform.position = checkPoint.transform.position;  
+        
     }
     void Awake()
     {

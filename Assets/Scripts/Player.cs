@@ -92,41 +92,22 @@ public class Player : MonoBehaviour
     {
         isDying = true;
         playerAnimator.SetBool("isDying", true);
-
-        Debug.Log(playerAnimator.GetBool("isDying"));
+  
         rb.Sleep();
-       
-        yield return new WaitForSeconds(waitOnDeath);
-
-        playerAnimator.SetBool("isDying", false);
-        Debug.Log(playerAnimator.GetBool("isDying"));
-
         if (gravity > 0.0f)
         {
             FlipVertically();
             gravity *= -1;
         }
-        rb.WakeUp();
+
+        yield return new WaitForSeconds(waitOnDeath);
+
         gameController.RespawnPlayer(this);
-        
+        playerAnimator.SetBool("isDying", false);
         isDying = false;
-  
+        rb.WakeUp();
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Respawn"))
-        {
-            Checkpoint checkpoint = collision.gameObject.GetComponent<Checkpoint>();
-
-            // Comprobamos si el checkpoint está desactivado.
-            if (!checkpoint.enabled)
-            {
-                Debug.Log(gameController);
-                gameController.ActivateCheckpoint(collision.gameObject);
-            }
-        }
-    }
 
     private void Flip()
     {
@@ -158,7 +139,7 @@ public class Player : MonoBehaviour
     {
         // Al pulsar la W, solo si el personaje está grounded
 
-        if (Input.GetKeyDown(KeyCode.W) && isGrounded && !isDying)
+        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)|| Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.UpArrow)) && isGrounded && !isDying)
         {
             // invertimos la gravedad y el sprite del personaje
 

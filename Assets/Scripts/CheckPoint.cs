@@ -20,29 +20,12 @@ public class Checkpoint : MonoBehaviour
     void Start()
     {
 
-        enabled = false;
+        enabled = true;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.color = color;
+        spriteRenderer.color = enabledColor;
 
 
     }
 
-    public void Enabled()
-    {
-        if (!enabled)
-        {
-            enabled = true;
-            spriteRenderer.color = enabledColor;
-        }
-    }
-
-    public void Deactivated()
-    {
-        if (enabled)
-        {
-            enabled = false;
-            spriteRenderer.color = color;
-        }
-    }
 
 }
