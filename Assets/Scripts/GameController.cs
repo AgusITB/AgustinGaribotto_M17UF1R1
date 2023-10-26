@@ -29,10 +29,10 @@ class GameController : MonoBehaviour
         else Destroy(this.gameObject);
     }
 
-    public void ReLoadLevel()
+    public void ReLoadLevel(Player player)
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
+        SceneManager.LoadScene(1);
+        player.transform.position = new(-19.96f, -9.4f, 1);
         Time.timeScale = 1f;
     }
 }
