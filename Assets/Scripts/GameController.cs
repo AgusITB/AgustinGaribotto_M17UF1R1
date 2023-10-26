@@ -28,4 +28,11 @@ class GameController : MonoBehaviour
         if (GameController.gC == null) GameController.gC = this;
         else Destroy(this.gameObject);
     }
+
+    public void ReLoadLevel()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+        Time.timeScale = 1f;
+    }
 }

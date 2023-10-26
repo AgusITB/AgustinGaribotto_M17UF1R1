@@ -19,16 +19,24 @@ public class SwapScenes : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(player.scene.name.ToString());
         if (collision.gameObject.CompareTag("Player"))
         {
             DontDestroyOnLoad(collision.gameObject);
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GameController"));
             //  DontDestroyOnLoad(GameObject.FindGameObjectWithTag("ChangeScene"));
-
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Player"));
-            player.transform.position = new(player.transform.position.x + 5, player.transform.position.y, player.transform.position.z);
-            SceneManager.LoadScene(1);
+            DontDestroyOnLoad(GameObject.FindGameObjectWithTag("PauseMenu"));
+
+            if (CompareTag("NextLevel"))
+            {
+                player.transform.position = new(player.transform.position.x + 5, player.transform.position.y, player.transform.position.z);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            else if (CompareTag("PreviousLevel"))
+            {
+                player.transform.position = new(player.transform.position.x - 5, player.transform.position.y, player.transform.position.z);
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            }
 
         }
 

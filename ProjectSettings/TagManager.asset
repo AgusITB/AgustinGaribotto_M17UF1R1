@@ -7,6 +7,9 @@ TagManager:
   - Danger
   - Wall
   - ChangeScene
+  - NextLevel
+  - PreviousLevel
+  - PauseMenu
   layers:
   - Default
   - TransparentFX
