@@ -1,6 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
+
 
 public class Player : MonoBehaviour
 {
@@ -83,7 +84,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Danger"))
         {
-            
             StartCoroutine(ManageDeath());
         }
 

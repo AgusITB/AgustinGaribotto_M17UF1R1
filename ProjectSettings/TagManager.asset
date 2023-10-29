@@ -10,6 +10,9 @@ TagManager:
   - NextLevel
   - PreviousLevel
   - PauseMenu
+  - Spawner
+  - Background
+  - Gemstone
   layers:
   - Default
   - TransparentFX
