@@ -6,6 +6,8 @@ public class EnemyShooting : MonoBehaviour
     public GameObject bullet;
     public Transform bulletPos;
 
+    [SerializeField] private AudioSource shootingSoundEffect;
+
     private float timer;
     private GameObject player;
 
@@ -37,6 +39,7 @@ public class EnemyShooting : MonoBehaviour
 
     void shoot()
     {
+        shootingSoundEffect.Play();
         //  Instantiate(bullet,bulletPos.position, Quaternion.identity);
         GameObject bullet = BulletPool.instance.GetPooledObject();
         if (bullet != null)

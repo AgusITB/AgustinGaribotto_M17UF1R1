@@ -7,7 +7,7 @@ class GameController : MonoBehaviour
 {
     private GameObject checkPoint;
     public static GameController gC;
-    public int gemstonesNeededToWin = 4;
+    public int gemstonesNeededToWin = 5;
     private int gemstonesCollected = 0;
 
     public TextMeshProUGUI gemstonesCount;
@@ -36,7 +36,10 @@ class GameController : MonoBehaviour
             gemstonesText.text = "All trinkets collected!";
         }
     }
-
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
     public void RespawnPlayer(Player player)
     {
         checkPoint = GameObject.FindGameObjectWithTag("Respawn");
@@ -47,7 +50,7 @@ class GameController : MonoBehaviour
     {
         if (GameController.gC == null) GameController.gC = this;
         else Destroy(this.gameObject);
-        gemstonesDestroyed = new bool[4];
+        gemstonesDestroyed = new bool[5];
     }
 
     public void ReLoadLevel(Player player)

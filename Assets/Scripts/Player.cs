@@ -35,6 +35,8 @@ public class Player : MonoBehaviour
     public Vector2 spawnPoint = new(0.0f, 0.0f);
 
 
+    [SerializeField] private AudioSource collectingGemstoneEffect;
+
     void Awake()
     {
         if (Player.player == null) Player.player = this;
@@ -94,7 +96,7 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Gemstone"))
         {
-
+            collectingGemstoneEffect.Play();
             int sceneIndex = SceneManager.GetActiveScene().buildIndex-1;
             GameController.gC.gemstonesDestroyed[sceneIndex] = true;
             other.gameObject.SetActive(false);
