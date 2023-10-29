@@ -1,7 +1,8 @@
+using System;
 using System.Collections;
 
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        
         RespondToGravityInput();
         Flip();
     }
@@ -87,6 +89,17 @@ public class Player : MonoBehaviour
             StartCoroutine(ManageDeath());
         }
 
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Gemstone"))
+        {
+
+            int sceneIndex = SceneManager.GetActiveScene().buildIndex-1;
+            GameController.gC.gemstonesDestroyed[sceneIndex] = true;
+            other.gameObject.SetActive(false);
+            gameController.AddGemstone();
+        }
     }
     IEnumerator ManageDeath()
     {

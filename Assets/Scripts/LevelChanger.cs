@@ -26,13 +26,15 @@ public class LevelChanger : MonoBehaviour
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("GameController"));
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("PauseMenu"));
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Background"));
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("UI"));
+
+
         Player player = other.collider.GetComponent<Player>(); 
+        
         if (player != null)
         {
             LevelConnection.ActiveConnection = connection;
-            SceneManager.LoadScene(targetSceneName);
+            SceneManager.LoadScene(targetSceneName);        
         }
-
-
     }
 }

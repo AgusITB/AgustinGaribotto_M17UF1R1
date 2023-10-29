@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyShooting : MonoBehaviour
@@ -41,7 +38,6 @@ public class EnemyShooting : MonoBehaviour
     void shoot()
     {
         //  Instantiate(bullet,bulletPos.position, Quaternion.identity);
-        Debug.Log("Shoot!");
         GameObject bullet = BulletPool.instance.GetPooledObject();
         if (bullet != null)
         {

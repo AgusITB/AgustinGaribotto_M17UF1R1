@@ -1,26 +1,28 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Gemstone : MonoBehaviour
 {
-    public bool isDestroyed = false;
+    public static Gemstone g;
+    public bool isActive;
 
+
+    public void Awake()
+    {
+        if (Gemstone.g == null) Gemstone.g = this;
+        else Destroy(this.gameObject);
+
+        
+    }
     public void Start()
     {
-        if (isDestroyed) Destroy(gameObject);
-    }
-    public void CollectGemstone()
-    {
-        isDestroyed = true;
-        Destroy(gameObject);
+        if (GameController.gC.gemstonesDestroyed[SceneManager.GetActiveScene().buildIndex - 1])
+        {
+            GameObject.FindWithTag("Gemstone").SetActive(false);
+
+        }
+        else GameObject.FindWithTag("Gemstone").SetActive(true);
     }
 
-    public bool IsDestroyed()
-    {
-        return isDestroyed;
-    }
 
-    public void SetDestroyedState(bool destroyed)
-    {
-        isDestroyed = destroyed;
-    }
 }
