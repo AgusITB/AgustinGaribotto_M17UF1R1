@@ -15,6 +15,7 @@ TagManager:
   - Gemstone
   - UI
   - EventSystem
+  - VicMenu
   layers:
   - Default
   - TransparentFX

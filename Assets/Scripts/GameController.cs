@@ -1,33 +1,30 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using UnityEngine.UIElements;
 
 class GameController : MonoBehaviour
 {
     private GameObject checkPoint;
     public static GameController gC;
     public int gemstonesNeededToWin = 5;
-    private int gemstonesCollected = 0;
+    public int gemstonesCollected = 0;
 
     public TextMeshProUGUI gemstonesCount;
     public TextMeshProUGUI gemstonesText;
     public bool[] gemstonesDestroyed;
 
-    public void Update()
-    {
+    public static GameObject victory;
 
-
-    }
-    private bool CheckVictory()
+    public bool CheckVictory()
     {
         return (gemstonesCollected == gemstonesNeededToWin);
     }
     public void AddGemstone()
     {
-        gemstonesCollected++;
+        gemstonesCollected+=1;
         if(!CheckVictory ())
         {
+          
            gemstonesCount.text = gemstonesCollected.ToString();
         }
         else
@@ -55,17 +52,21 @@ class GameController : MonoBehaviour
 
     public void ReLoadLevel(Player player)
     {
+
         SceneManager.LoadScene(1);
         Time.timeScale = 1f;
         gemstonesCollected = 0;
         gemstonesCount.text = gemstonesCollected.ToString();
-
-       
+        gemstonesText.text = "Gemstones: ";
+        
         for (int i = 0; i < gemstonesDestroyed.Length; i++) 
         {
             gemstonesDestroyed[i] = false;
         }
         RespawnPlayer(player);
+
+        victory = GameObject.FindWithTag("VicMenu").gameObject;
+        victory.SetActive(false);
     }
 
 }

@@ -27,6 +27,8 @@ public class LevelChanger : MonoBehaviour
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("PauseMenu"));
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Background"));
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("UI"));
+        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("VicMenu"));
+       //DontDestroyOnLoad(GameObject.FindGameObjectWithTag("EventSystem"));
 
 
         Player player = other.collider.GetComponent<Player>(); 
@@ -37,4 +39,5 @@ public class LevelChanger : MonoBehaviour
             SceneManager.LoadScene(targetSceneName);        
         }
     }
+
 }
