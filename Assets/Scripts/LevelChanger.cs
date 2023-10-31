@@ -12,11 +12,13 @@ public class LevelChanger : MonoBehaviour
     [SerializeField]
     private Transform spawnPoint;
 
+
     private void Start()
     {
         if (connection == LevelConnection.ActiveConnection)
         {
             FindObjectOfType<Player>().transform.position = spawnPoint.position;
+     
         }
     }
 
@@ -27,17 +29,19 @@ public class LevelChanger : MonoBehaviour
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("PauseMenu"));
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Background"));
         DontDestroyOnLoad(GameObject.FindGameObjectWithTag("UI"));
-        DontDestroyOnLoad(GameObject.FindGameObjectWithTag("VicMenu"));
-       //DontDestroyOnLoad(GameObject.FindGameObjectWithTag("EventSystem"));
+        //  DontDestroyOnLoad(GameObject.FindGameObjectWithTag("VicMenu"));
+        //DontDestroyOnLoad(GameObject.FindGameObjectWithTag("EventSystem"));
 
 
-        Player player = other.collider.GetComponent<Player>(); 
-        
+        Player player = other.collider.GetComponent<Player>();
+
         if (player != null)
         {
             LevelConnection.ActiveConnection = connection;
-            SceneManager.LoadScene(targetSceneName);        
+            SceneManager.LoadScene(targetSceneName);
+
         }
+      
     }
 
 }

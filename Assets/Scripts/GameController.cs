@@ -33,10 +33,7 @@ class GameController : MonoBehaviour
             gemstonesText.text = "All trinkets collected!";
         }
     }
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+
     public void RespawnPlayer(Player player)
     {
         checkPoint = GameObject.FindGameObjectWithTag("Respawn");
@@ -54,6 +51,7 @@ class GameController : MonoBehaviour
     {
 
         SceneManager.LoadScene(1);
+        RespawnPlayer(player);
         Time.timeScale = 1f;
         gemstonesCollected = 0;
         gemstonesCount.text = gemstonesCollected.ToString();
@@ -63,10 +61,8 @@ class GameController : MonoBehaviour
         {
             gemstonesDestroyed[i] = false;
         }
-        RespawnPlayer(player);
+      
 
-        victory = GameObject.FindWithTag("VicMenu").gameObject;
-        victory.SetActive(false);
     }
 
 }
