@@ -16,6 +16,7 @@ TagManager:
   - UI
   - EventSystem
   - VicMenu
+  - FirstLevelSpawner
   layers:
   - Default
   - TransparentFX

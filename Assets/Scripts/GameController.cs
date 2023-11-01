@@ -1,67 +1,72 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 class GameController : MonoBehaviour
 {
-    private GameObject checkPoint;
-    public static GameController gC;
-    public int gemstonesNeededToWin = 5;
-    public int gemstonesCollected = 0;
 
+    //Singleton
+    public static GameController gC;
+
+    //Checkpoint object
+    private GameObject checkPoint;
+
+    //UI
     public TextMeshProUGUI gemstonesCount;
     public TextMeshProUGUI gemstonesText;
-    public bool[] gemstonesDestroyed;
 
+    //Gemstones
+    public bool[] gemstonesDestroyed;
+    private int gemstonesNeededToWin = 5;
+    private int gemstonesCollected = 0;
+
+    //Victory menu
     public static GameObject victory;
 
-    public bool CheckVictory()
-    {
-        return (gemstonesCollected == gemstonesNeededToWin);
-    }
-    public void AddGemstone()
-    {
-        gemstonesCollected+=1;
-        if(!CheckVictory ())
-        {
-          
-           gemstonesCount.text = gemstonesCollected.ToString();
-        }
-        else
-        {
-            gemstonesCount.text = "";
-            gemstonesText.text = "All trinkets collected!";
-        }
-    }
 
-    public void RespawnPlayer(Player player)
-    {
-        checkPoint = GameObject.FindGameObjectWithTag("Respawn");
-        player.transform.position = checkPoint.transform.position;  
-        
-    }
+    //Singleton
     void Awake()
     {
+
         if (GameController.gC == null) GameController.gC = this;
         else Destroy(this.gameObject);
         gemstonesDestroyed = new bool[5];
     }
 
-    public void ReLoadLevel(Player player)
+    // Check if the player has collected the 5 gemstones needed to win
+    public bool CheckVictory()
     {
+        return (gemstonesCollected == gemstonesNeededToWin);
+    }
 
-        SceneManager.LoadScene(1);
-        RespawnPlayer(player);
+    // We add gemstones to the gemstonesCollected int as the player collects the gems.
+    public void AddGemstone()
+    {
+        gemstonesCollected+=1;
+        if(!CheckVictory ()) gemstonesCount.text = gemstonesCollected.ToString();
+        else
+        { // If the player collects the gemstones needed to win we change the UI text.
+            gemstonesCount.text = "";
+            gemstonesText.text = "All trinkets collected!";
+        }
+    }
+
+    //When the player dies we respawn it to the available checkpoint in the scene
+    public void RespawnPlayer(Player player)
+    {
+        checkPoint = GameObject.FindGameObjectWithTag("Respawn");
+        player.transform.position = checkPoint.transform.position;  
+    }
+
+    // Update the score, the UI text and the state of the gemstone objects
+    public void ReLoadLevel()
+    {
+      
         Time.timeScale = 1f;
         gemstonesCollected = 0;
         gemstonesCount.text = gemstonesCollected.ToString();
         gemstonesText.text = "Gemstones: ";
         
-        for (int i = 0; i < gemstonesDestroyed.Length; i++) 
-        {
-            gemstonesDestroyed[i] = false;
-        }
-      
+        for (int i = 0; i < gemstonesDestroyed.Length; i++) gemstonesDestroyed[i] = false;
 
     }
 

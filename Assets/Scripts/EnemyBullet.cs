@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
@@ -10,8 +8,6 @@ public class EnemyBullet : MonoBehaviour
 
     public float force;
 
-    // Start is called before the first frame update
-  
     private void OnBecameVisible()
     {
         Vector3 direction = player.transform.position - transform.position;

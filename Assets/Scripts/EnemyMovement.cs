@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
@@ -33,9 +31,11 @@ public class EnemyMovement : MonoBehaviour
         transform.position = startingPos + offset;
         Flip();
     }
+
+    //Flip sprite each time it arrives to the max and min values
     private void Flip()
     {
-
+       
         if ((movementFactor > 0.98f && movementFactor < 1f) && facingRight || (movementFactor < -0.98f && movementFactor > -1f) && !facingRight)
         {
             facingRight = !facingRight;

@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 
 public class Victory : MonoBehaviour
 {
@@ -23,7 +23,10 @@ public class Victory : MonoBehaviour
         {
             victory.SetActive(true);
             Time.timeScale = 0f;
+        } else 
+        { 
+            victory.SetActive(false);
+            Time.timeScale = 1f;
         }
-
     }
 }

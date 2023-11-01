@@ -11,13 +11,13 @@ public class EnemyShooting : MonoBehaviour
     private float timer;
     private GameObject player;
 
-    // Start is called before the first frame update
+ 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
@@ -29,18 +29,16 @@ public class EnemyShooting : MonoBehaviour
             if (timer > 1)
             {
                 timer = 0;
-                shoot();
+                Shoot();
             }
-
         }
 
 
     }
 
-    void shoot()
+    void Shoot()
     {
         shootingSoundEffect.Play();
-        //  Instantiate(bullet,bulletPos.position, Quaternion.identity);
         GameObject bullet = BulletPool.instance.GetPooledObject();
         if (bullet != null)
         {

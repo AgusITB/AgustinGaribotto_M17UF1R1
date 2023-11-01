@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 
 using UnityEngine;
@@ -37,6 +36,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private AudioSource collectingGemstoneEffect;
 
+    //Singleton
     void Awake()
     {
         if (Player.player == null) Player.player = this;
@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        
         RespondToGravityInput();
         Flip();
     }
@@ -144,11 +143,11 @@ public class Player : MonoBehaviour
     }
     bool CheckIsGrounded()
     {
+        // We send a ray from the center of the character up or down depending if it is facingUp or facingDown and check if it is hitting the layer Groound
         RaycastHit2D raycastHit = Physics2D.BoxCast(mCollider.bounds.center, mCollider.bounds.size, 0f, facingUp ? Vector2.down : Vector2.up, 0.1f, whatIsGround);
 
         return raycastHit.collider != null;
     }
-
 
     void RespondToGravityInput()
     {

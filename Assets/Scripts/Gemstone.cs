@@ -11,11 +11,10 @@ public class Gemstone : MonoBehaviour
     {
         if (Gemstone.g == null) Gemstone.g = this;
         else Destroy(this.gameObject);
-
-        
     }
     public void Start()
     {
+        // To be sure gemstones don't appear multiple times when scene changing after pickup we will deactivate the ones that have been collected
         if (GameController.gC.gemstonesDestroyed[SceneManager.GetActiveScene().buildIndex - 1])
         {
             GameObject.FindWithTag("Gemstone").SetActive(false);
