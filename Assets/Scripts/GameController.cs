@@ -63,7 +63,7 @@ class GameController : MonoBehaviour
       
         Time.timeScale = 1f;
         gemstonesCollected = 0;
-        gemstonesCount.text = gemstonesCollected.ToString();
+        gemstonesCount.text = "";
         gemstonesText.text = "Gemstones: ";
         
         for (int i = 0; i < gemstonesDestroyed.Length; i++) gemstonesDestroyed[i] = false;

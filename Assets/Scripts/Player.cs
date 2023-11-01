@@ -36,6 +36,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private AudioSource collectingGemstoneEffect;
 
+    [SerializeField] private AudioSource deathSound;
+
     //Singleton
     void Awake()
     {
@@ -87,6 +89,7 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Danger"))
         {
+            deathSound.Play();
             StartCoroutine(ManageDeath());
         }
 
@@ -106,7 +109,7 @@ public class Player : MonoBehaviour
     {
         isDying = true;
         playerAnimator.SetBool("isDying", true);
-  
+       
         rb.Sleep();
         if (gravity > 0.0f)
         {
