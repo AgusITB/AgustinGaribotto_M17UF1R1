@@ -20,8 +20,8 @@ public class LevelChanger : MonoBehaviour
     // (it activates when the player collides with the level changer)
     private void Start()
     {
-        gameController = GameObject.FindGameObjectWithTag("GameController").gameObject.GetComponent<GameController>();
-        player = GameObject.FindGameObjectWithTag("Player").gameObject.GetComponent<Player>();
+        gameController = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
         //If the active conection is the same as one of the connections in the scene it means we activated a connection while colliding
         //with the player or pressing the reset game button on the menu then, we move the player to the respective spawnpoint after loading the scene
@@ -42,7 +42,7 @@ public class LevelChanger : MonoBehaviour
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("Background"));
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("UI"));
             DontDestroyOnLoad(GameObject.FindGameObjectWithTag("FirstLevelSpawner"));
-            DontDestroyOnLoad(GameObject.FindGameObjectWithTag("VicMenu"));
+         
 
             LevelConnection.ActiveConnection = connection;
             SceneManager.LoadScene(targetSceneName);

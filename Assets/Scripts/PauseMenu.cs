@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) ResumeOrPause(isPaused ? false : true);
+        if (Input.GetKeyDown(KeyCode.Escape)) ResumeOrPause(!isPaused);
     }
 
     public void ResumeOrPause(bool pause)

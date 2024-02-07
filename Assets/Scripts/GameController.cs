@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using System;
 
 class GameController : MonoBehaviour
 {
@@ -21,8 +22,8 @@ class GameController : MonoBehaviour
 
     //Victory menu
     public static GameObject victory;
-
-
+    public static Action playerWon;
+    public static Action playerRestarted;
     //Singleton
     void Awake()
     {
@@ -47,6 +48,7 @@ class GameController : MonoBehaviour
         { // If the player collects the gemstones needed to win we change the UI text.
             gemstonesCount.text = "";
             gemstonesText.text = "All trinkets collected!";
+            playerWon.Invoke();
         }
     }
 
@@ -60,7 +62,7 @@ class GameController : MonoBehaviour
     // Update the score, the UI text and the state of the gemstone objects
     public void ReLoadLevel()
     {
-      
+        playerRestarted.Invoke();
         Time.timeScale = 1f;
         gemstonesCollected = 0;
         gemstonesCount.text = "";

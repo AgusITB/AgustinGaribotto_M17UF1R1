@@ -1,32 +1,40 @@
+using System;
 using UnityEngine;
 
 
 public class Victory : MonoBehaviour
 {
-    public GameObject victory;
-    public static Victory vT;
-    private GameController controller;
+    public static Victory instance;
 
     void Awake()
     {
-        if (Victory.vT == null) Victory.vT = this;
-        else Destroy(this.gameObject);
-        victory.SetActive(false);
-    }
-    void Start()
-    {
-        controller = GameObject.FindWithTag("GameController").gameObject.GetComponent<GameController>();
-    }
-    void Update()
-    {
-        if (controller.CheckVictory())
+        
+        if (instance != null && instance != this)
         {
-            victory.SetActive(true);
-            Time.timeScale = 0f;
-        } else 
-        { 
-            victory.SetActive(false);
-            Time.timeScale = 1f;
+            Destroy(this.gameObject);
         }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
+
+        GameController.playerWon += PlayerWon;
+        GameController.playerRestarted += PlayerRestarted;
+
     }
+    private void PlayerWon()
+    {
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(true);
+        Time.timeScale = 0f;
+
+    }
+    private void PlayerRestarted()
+    {
+        this.gameObject.transform.GetChild(0).gameObject.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+
 }
